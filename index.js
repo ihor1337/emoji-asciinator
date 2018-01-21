@@ -30,13 +30,14 @@ let saveToDisk = (req, res, next) =>{
 //app.use(saveToDisk)
 
 app.get('/:code', saveToDisk, (req, res)=>{
-  imageToAscii('out.png', {
+  imageToAscii('./out.png', {
     colored: false
   }, (err, converted) => {
     if(err) res.status(500).send("Could't asciify this emoji");
     res.send(converted)
-    console.log(converted)
+    console.log(err || converted)
   }); 
 })
 
-app.listen(3000, ()=> console.log("listening on 3000"))
+const PORT = process.env.PORT || 3000;
+app.listen(3000, ()=> console.log("listening on "+PORT));

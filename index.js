@@ -34,7 +34,7 @@ app.get('/:code', saveToDisk, (req, res)=>{
     colored: false
   }, (err, converted) => {
     if(err) res.status(500).send("Could't asciify this emoji");
-    res.send(converted)
+    res.send(`<pre>${converted}</pre>`);
     console.log(err || converted)
   }); 
 })
